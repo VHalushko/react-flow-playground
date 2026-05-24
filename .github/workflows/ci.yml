@@ -21,17 +21,17 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: sentinel-flow/package-lock.json
 
       - run: npm ci
 
       - name: NX affected lint
-        run: npx nx affected --target=lint --base=origin/main --head=HEAD
+        run: npx nx affected --target=lint --base=origin/main --head=HEAD || npx nx run-many --target=lint --all
 
       - name: NX affected typecheck
-        run: npx nx affected --target=typecheck --base=origin/main --head=HEAD
+        run: npx nx affected --target=typecheck --base=origin/main --head=HEAD || npx nx run-many --target=typecheck --all
 
   unit-tests:
     name: Unit tests
@@ -43,14 +43,14 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: sentinel-flow/package-lock.json
 
       - run: npm ci
 
       - name: NX affected test
-        run: npx nx affected --target=test --base=origin/main --head=HEAD --coverage
+        run: npx nx affected --target=test --base=origin/main --head=HEAD -- --coverage || npx nx run-many --target=test --all -- --coverage
 
       - name: Upload coverage
         uses: codecov/codecov-action@v4
@@ -64,7 +64,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: sentinel-flow/package-lock.json
 
@@ -87,7 +87,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: sentinel-flow/package-lock.json
 
