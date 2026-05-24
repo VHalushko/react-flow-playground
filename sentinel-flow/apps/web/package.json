@@ -1,0 +1,8 @@
+{
+  "name": "@sentinel-flow/web",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "tags": ["type:app", "scope:web"]
+  }
+}
