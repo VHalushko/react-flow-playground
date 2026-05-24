@@ -69,7 +69,7 @@ jobs:
           cache-dependency-path: sentinel-flow/package-lock.json
 
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps
 
       - name: Build app
         run: npx nx build @sentinel-flow/web
